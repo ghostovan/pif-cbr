@@ -1,4 +1,7 @@
-"""Smoke-тест: все страницы дэшборда рендерятся без ошибок."""
+"""Smoke-тест Streamlit-дэшборда: все страницы рендерятся без ошибок.
+
+Запуск напрямую: python tests/smoke_dashboard.py
+"""
 import sys
 from pathlib import Path
 
@@ -9,21 +12,25 @@ PAGES = ["Обзор рынка", "Потоки", "Структура актив
          "Фонды для неквалов", "Данные"]
 
 
-def main() -> int:
-    failed = False
+def _render(page: str) -> list[str]:
+    at = AppTest.from_file(str(APP), default_timeout=120)
+    at.run()
+    at.sidebar.radio[0].set_value(page)
+    at.run()
+    return [str(e.value) for e in at.exception]
+
+
+def test_all_pages_render():
+    failed = {}
     for page in PAGES:
-        at = AppTest.from_file(str(APP), default_timeout=120)
-        at.run()
-        at.sidebar.radio[0].set_value(page)
-        at.run()
-        errs = [str(e.value) for e in at.exception]
+        errs = _render(page)
+        if errs:
+            failed[page] = errs[:3]
         print(f"[{'OK' if not errs else 'FAIL'}] {page}: ошибок={len(errs)}",
               flush=True)
-        for e in errs[:3]:
-            print("   EXC:", e[:400], flush=True)
-        failed = failed or bool(errs)
-    return 1 if failed else 0
+    assert not failed, f"Страницы с ошибками: {failed}"
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    bad = [p for p in PAGES if _render(p)]
+    sys.exit(1 if bad else 0)
