@@ -1,16 +1,16 @@
-﻿benchmark,n_funds,nav_sum
-Russian Secured Funding Average Rate (RUSFAR),5,794011611045.95
-GLDRUB_TOM,4,49354119205.7
-Ruble OverNight Index Average (RUONIA),3,364251924186.76996
-Индекс МосБиржи полной доходности 2 (MCF2TR),3,14899065625.220001
-Индекс МосБиржи полной доходности «брутто» (MCFTR),3,32048369540.800003
-Индекс МосБиржи аффинированного золота (RUGOLD),2,499210123.68999994
-Индекс накопленной доходности RUSFARIND (RUSFARIND),2,7149371385.17
-Cbonds CBI RU Middle Market Investable,1,1673789616.59
-RUONIA (Ruble Over Night Index Average),1,42681664667.5
-RUONIA (Ruble OverNight Index Average),1,4091275101.49
-RUONIA (Ruble Overnight Index Average),1,50679649.75
-RUSFAR,1,948793729.6
-Ruble Overnight Index Average,1,58655606102.55
-Russian Secured Funding Average Rate CNY (RUSFAR CNY),1,4576469792.52
-АТОН – Длинные ОФЗ (AAMGB),1,1749643960.97
+﻿report_date,benchmark,n_funds,nav_sum
+2026-07-31,Russian Secured Funding Average Rate (RUSFAR),5,794011611045.95
+2026-07-31,GLDRUB_TOM,4,49354119205.7
+2026-07-31,Ruble OverNight Index Average (RUONIA),3,364251924186.76996
+2026-07-31,Индекс МосБиржи полной доходности 2 (MCF2TR),3,14899065625.220001
+2026-07-31,Индекс МосБиржи полной доходности «брутто» (MCFTR),3,32048369540.800003
+2026-07-31,Индекс МосБиржи аффинированного золота (RUGOLD),2,499210123.68999994
+2026-07-31,Индекс накопленной доходности RUSFARIND (RUSFARIND),2,7149371385.17
+2026-07-31,Cbonds CBI RU Middle Market Investable,1,1673789616.59
+2026-07-31,RUONIA (Ruble Over Night Index Average),1,42681664667.5
+2026-07-31,RUONIA (Ruble OverNight Index Average),1,4091275101.49
+2026-07-31,RUONIA (Ruble Overnight Index Average),1,50679649.75
+2026-07-31,RUSFAR,1,948793729.6
+2026-07-31,Ruble Overnight Index Average,1,58655606102.55
+2026-07-31,Russian Secured Funding Average Rate CNY (RUSFAR CNY),1,4576469792.52
+2026-07-31,АТОН – Длинные ОФЗ (AAMGB),1,1749643960.97

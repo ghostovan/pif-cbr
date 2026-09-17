@@ -1,4 +1,4 @@
-﻿report_date,fund_type,flow_issuance,flow_redemption,flow_exchange_in,flow_exchange_out,net_flow
+﻿report_date,group,flow_issuance,flow_redemption,flow_exchange_in,flow_exchange_out,net_flow
 2026-01-30,Биржевой,76564643121.4,-1644740451.35,0.0,0.0,78209383572.75
 2026-01-30,Закрытый,5309159279.46,-956871933.19,0.0,0.0,6266031212.65
 2026-01-30,Интервальный,0.0,-939666.05,0.0,0.0,939666.05

@@ -75,7 +75,7 @@ def build_flows(opd_rub: pd.DataFrame) -> pd.DataFrame:
     ).reset_index()
     g["net_flow"] = (g["flow_issuance"] - g["flow_redemption"]
                      + g["flow_exchange_in"] - g["flow_exchange_out"])
-    return g
+    return g.rename(columns={"fund_type": "group"})
 
 
 def build_asset_structure(opd_rub: pd.DataFrame) -> pd.DataFrame:
@@ -178,18 +178,21 @@ def build_strategy_split(show_rub: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_benchmarks_top(show_rub: pd.DataFrame, top_n: int = 15) -> pd.DataFrame:
-    last = show_rub[show_rub.report_date == show_rub.report_date.max()]
+    last_dt = show_rub.report_date.max()
+    last = show_rub[show_rub.report_date == last_dt]
     passive = last[last["strategy_type"] == "пассивная"]
     g = (passive.groupby("benchmark", observed=True)
          .agg(n_funds=("rule_number", "count"), nav_sum=("nav", "sum"))
          .reset_index()
          .nlargest(top_n, "n_funds"))
+    g.insert(0, "report_date", last_dt)
     return g
 
 
 # ------------------------------------------------------------- объединённые --
 
 MERGED_COLS = [
+    "report_date",
     "rule_number", "fund_name", "isin", "fund_type", "category", "status",
     "uk_name", "uk_inn", "uk_website", "strategy_type", "benchmark",
     "benchmark_deviation",
@@ -212,7 +215,8 @@ def build_merged(opd: pd.DataFrame, show: pd.DataFrame) -> pd.DataFrame:
     """Последний месяц обоих источников: свойства фонда + рыночные метрики."""
     last_show_dt = show.report_date.max()
     last_opd_dt = opd.report_date.max()
-    s = show[show.report_date == last_show_dt]
+    s = show[show.report_date == last_show_dt].copy()
+    s["report_date"] = last_opd_dt
     o = opd[opd.report_date == last_opd_dt][
         ["rule_number", "units_total", "holders_total", "holders_individuals",
          "unit_value", "nav", "currency_code"]]
