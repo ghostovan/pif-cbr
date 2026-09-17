@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Streamlit: секреты НИКОГДА не попадают в репозиторий
+.streamlit/secrets.toml
+.env
+.env.*
+
+# Сырые XLSX не коммитим (скачиваются: make download), в репо только CSV
+data/raw/
+
+# Служебное
+.DS_Store

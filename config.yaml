@@ -1,0 +1,31 @@
+# Конфигурация проекта project_cbr
+# Источники данных Банка России (открытые данные, публ. форматы XLSX)
+
+sources:
+  opd:
+    name: "Основные показатели деятельности ПИФ (ОПД_ПИФ)"
+    # URL может меняться для новых наборов — при обновлении заменить здесь
+    url: "https://cbr.ru/Collection/Collection/File/60830/opd_PIF_2026.XLSX"
+    raw_file: "data/raw/opd_PIF_2026.XLSX"
+  showcase:
+    name: "Витрина данных ПИФ для неквалифицированных инвесторов"
+    url: "https://cbr.ru/Content/Document/File/193443/%20mutual_fund_data.xlsx"
+    raw_file: "data/raw/mutual_fund_data.xlsx"
+
+paths:
+  schema: "schema.json"
+  processed_dir: "data/processed"
+  dashboard_dir: "data/dashboard"
+  quality_dir: "data/quality"
+
+download:
+  timeout_sec: 120
+  retries: 3
+  min_file_bytes: 100000   # меньше — считаем загрузку битой
+
+validation:
+  min_rows_per_sheet: 500
+  max_rows_per_sheet: 1500
+  max_fee_parse_fail_rate: 0.05   # >5% непарсируемых комиссий — fail
+  min_join_coverage: 0.99         # join файлов по № ПДУ
+  max_nav_negative_share: 0.001   # доля отрицательных СЧА

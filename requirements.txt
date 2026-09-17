@@ -1,0 +1,5 @@
+# Зависимости приложения (Streamlit Cloud)
+streamlit==1.64.0
+plotly==7.1.0
+pandas==3.0.5
+PyYAML==6.0.3
