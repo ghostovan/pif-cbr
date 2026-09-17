@@ -254,7 +254,7 @@ def apply_fee_parsing(df: pd.DataFrame) -> tuple[pd.DataFrame, float]:
     df["has_success_fee"] = df["success_fee_raw"].map(
         lambda s: bool(norm_text(s)) and norm_text(s).lower() not in WAIVE
     )
-    return df, fail_rate
+    return df.copy(), fail_rate
 
 
 # ------------------------------------------------------------------- схема ---

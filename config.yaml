@@ -28,4 +28,4 @@ validation:
   max_rows_per_sheet: 1500
   max_fee_parse_fail_rate: 0.05   # >5% непарсируемых комиссий — fail
   min_join_coverage: 0.99         # join файлов по № ПДУ
-  max_nav_negative_share: 0.001   # доля отрицательных СЧА
+  max_nav_negative_share: 0.02   # отрицательный СЧА — легитимно (фонды в ликвидации); fail только при аномальной доле
