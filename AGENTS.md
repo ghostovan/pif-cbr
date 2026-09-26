@@ -8,8 +8,8 @@
 фондах (ПИФ): два XLSX-источника скачиваются, конвертируются в нормализованные
 CSV, из них собираются витрины-агрегаты. Streamlit-дэшборд показывает статистику
 рынка и фонды для неквалифицированных инвесторов. Данные и код живут в
-публичном git-репозитории, дэшборд деплоится на Streamlit Community Cloud,
-обновление — `make update` или ежемесячный cron в GitHub Actions.
+публичном git-репозитории; дэшборд запускается локально (`make run`),
+публикация в Streamlit Community Cloud и ежемесячный cron приостановлены.
 
 ## Карта репозитория
 
@@ -24,7 +24,7 @@ CSV, из них собираются витрины-агрегаты. Streamlit
 | `app/dashboard.py` | Streamlit, 5 страниц | читает `data/dashboard/`, `data/processed/pif_long.csv` |
 | `tests/` | pytest: парсер, пайплайн, smoke дэшборда (AppTest) | |
 | `scripts/update.sh` | идемпотентный update + push | вызывается `make update` |
-| `.github/workflows/` | ci.yml (тесты), monthly-update.yml (cron 12-го числа) | |
+| `.github/workflows/` | ci.yml (тесты); monthly-update.yml.disabled (cron приостановлен) | |
 
 ## Данные: источники и словарь
 
@@ -98,13 +98,6 @@ make update             # всё сразу + commit + push (идемпотен�
 
 - Нейминг колонок ОПД — список `OPD_NAMES` в `src/convert.py`, витрины —
   `SHOWCASE_NAMES`. При изменении — `--make-schema` и diff schema.json.
-
-## Деплой
-
-Streamlit Community Cloud: push в GitHub → share.streamlit.io → New app →
-выбрать репо/ветку/`app/dashboard.py`. Каждый push в main = авторедеплой.
-Перед push `make update` гоняет валидацию и smoke-тесты (см. scripts/update.sh
-и CI) — сломанный дэшборд не публикуется молча.
 
 ## Правила безопасности (обязательно)
 

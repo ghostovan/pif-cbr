@@ -31,7 +31,7 @@ make run         # дэшборд на http://localhost:8501
 ```
 
 Обновление данных одной командой (скачивание → конвертация → витрины →
-валидация → commit → push; после push облако передеплоит дэшборд):
+валидация → commit → push):
 
 ```bash
 make update
@@ -58,21 +58,12 @@ data/                 processed + dashboard CSV хранятся в репози
 `returns_agg.csv`, `funds_merged_latest.csv` (фонды целиком),
 `fund_timeseries.csv`.
 
-## Деплой на Streamlit Community Cloud (публичная ссылка)
+## CI и автообновление
 
-1. Создайте репозиторий на GitHub и запушьте проект:
-   ```bash
-   git remote add origin git@github.com:<user>/<repo>.git
-   git push -u origin main
-   ```
-2. Зайдите на [share.streamlit.io](https://share.streamlit.io) → **New app** →
-   выберите репозиторий, ветку `main`, файл `app/dashboard.py` → **Deploy**.
-3. Готово: постоянная публичная ссылка вида `https://<app>.streamlit.app`.
-   Каждый push в `main` автоматически передеплоит приложение.
-
-Дополнительно: GitHub Actions обновляет данные 12-го числа каждого месяца
-(`.github/workflows/monthly-update.yml`) и гоняет тесты на каждый push
-(`ci.yml`).
+GitHub Actions гоняет тесты на каждый push (`ci.yml`). Ежемесячное
+автообновление данных (cron 12-го числа) приостановлено: воркфлоу
+переименован в `.github/workflows/monthly-update.yml.disabled`.
+Вернуть: `git mv` обратно в `monthly-update.yml` и запушить.
 
 ## Лицензия
 

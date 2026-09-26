@@ -34,4 +34,4 @@ fi
 git commit -m "data: обновление наборов ПИФ $(date +%Y-%m-%d)"
 git pull --rebase origin main || true
 git push origin main
-echo "Пуш выполнен — Streamlit Cloud передеплоит приложение автоматически."
+echo "Пуш выполнен."
